@@ -130,18 +130,18 @@ The pipeline runs all analysis in parallel using `Promise.allSettled` so image a
 │                                                                     │
 │  Step 1 — Parallel (if inputs provided):                            │
 │  ┌──────────────────────┐    ┌──────────────────────────┐           │
-│  │  visionAnalyze()     │    │  speechToText()           │           │
-│  │  Google Vision API   │    │  Google Speech API        │           │
-│  │  • Label detection   │    │  • WEBM_OPUS encoding     │           │
-│  │  • Text (OCR)        │    │  • en-IN primary          │           │
-│  │  • Score > 0.65      │    │  • hi-IN, mr-IN fallback  │           │
-│  │  • Critical check ⚡ │    │                           │           │
+│  │  visionAnalyze()     │    │  speechToText()          │           │
+│  │  Google Vision API   │    │  Google Speech API       │           │
+│  │  • Label detection   │    │  • WEBM_OPUS encoding    │           │
+│  │  • Text (OCR)        │    │  • en-IN primary         │           │
+│  │  • Score > 0.65      │    │  • hi-IN, mr-IN fallback │           │
+│  │  • Critical check    │    |                          │           │
 │  └──────────────────────┘    └──────────────────────────┘           │
 │                                                                     │
 │  Step 2 — Short-circuit check:                                      │
 │  If Vision detects critical labels (accident, fire, explosion,      │
 │  injury, blood, crash, smoke, ambulance, disaster)                  │
-│  → Skip Groq, return HIGH immediately with 0.95 confidence         │
+│  → Skip Groq, return HIGH immediately with 0.95 confidence          │
 │                                                                     │
 │  Step 3 — groqAnalyze()                                             │
 │  Llama 3.3-70b-versatile via Groq API                               │
