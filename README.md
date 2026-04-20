@@ -5,7 +5,12 @@
 
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
-[![Firebase](https://img.shields.io/badge/Firebase-Firestore%20%2B%20Auth-FFCA28?style=flat-square&logo=firebase)](https://firebase.google.com)
+[![Firebase Auth](https://img.shields.io/badge/Firebase-Authentication-FFCA28?style=flat-square&logo=firebase)](https://firebase.google.com/products/auth)
+[![Firestore](https://img.shields.io/badge/Firebase-Firestore-FFCA28?style=flat-square&logo=firebase)](https://firebase.google.com/products/firestore)
+[![Firebase Storage](https://img.shields.io/badge/Firebase-Storage-FFCA28?style=flat-square&logo=firebase)](https://firebase.google.com/products/storage)
+[![Google Vision](https://img.shields.io/badge/Google-Vision%20AI-4285F4?style=flat-square&logo=googlecloud)](https://cloud.google.com/vision)
+[![Google Speech](https://img.shields.io/badge/Google-Speech%20to%20Text-4285F4?style=flat-square&logo=googlecloud)](https://cloud.google.com/speech-to-text)
+[![Google Maps](https://img.shields.io/badge/Google-Maps-34A853?style=flat-square&logo=googlemaps)](https://developers.google.com/maps)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)](https://vitejs.dev)
 [![Llama](https://img.shields.io/badge/Llama-3.3%2070B-8A2BE2?style=flat-square&logo=meta)](https://ai.meta.com/blog/meta-llama-3/)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-sevak2--a403d.web.app-brightgreen?style=flat-square&logo=firebase)](https://sevak2-a403d.web.app)
