@@ -7,7 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
 [![Firebase](https://img.shields.io/badge/Firebase-Firestore%20%2B%20Auth-FFCA28?style=flat-square&logo=firebase)](https://firebase.google.com)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)](https://vitejs.dev)
-[![Groq](https://img.shields.io/badge/Groq-Llama%203.3-F55036?style=flat-square)](https://groq.com)
+[![Llama](https://img.shields.io/badge/Llama-3.3%2070B-8A2BE2?style=flat-square&logo=meta)](https://ai.meta.com/blog/meta-llama-3/)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-sevak2--a403d.web.app-brightgreen?style=flat-square&logo=firebase)](https://sevak2-a403d.web.app)
 [![GitHub](https://img.shields.io/badge/GitHub-faheemshiledar%2FSevak--v1-181717?style=flat-square&logo=github)](https://github.com/faheemshiledar/Sevak-v1/)
 
@@ -54,7 +54,7 @@ Citizen reports emergency
         ↓
   AI Pipeline runs in parallel:
   ┌─────────────────┐  ┌──────────────────┐  ┌──────────────────────┐
-  │ Google Vision   │  │ Google Speech    │  │ Llama 3.3 (Groq)     │
+  │ Google Vision   │  │ Google Speech    │  │ Llama 3.3            │
   │ Scene Analysis  │  │ Voice → Text     │  │ Triage & Classify    │
   └─────────────────┘  └──────────────────┘  └──────────────────────┘
         ↓
@@ -75,7 +75,7 @@ Citizen reports emergency
 - **Multimodal input** — text description, scene photograph, and voice recording all processed together
 - **Google Vision AI** — detects accidents, fire, injuries, and emergency signals in uploaded photos with a short-circuit fast path for critical visual matches
 - **Google Speech-to-Text** — transcribes voice reports in English, Hindi, and Marathi (en-IN, hi-IN, mr-IN)
-- **Llama 3.3 70B via Groq** — classifies severity level, emergency type, and generates a one-sentence dispatch instruction with confidence score
+- **Llama 3.3 70B** — classifies severity level, emergency type, and generates a one-sentence dispatch instruction with confidence score
 - **Fallback classifier** — regex-based text classifier ensures the app works even without API keys
 
 ### ⚡ Auto-Dispatch Engine
