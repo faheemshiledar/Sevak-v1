@@ -2571,7 +2571,7 @@ function AppShell() {
     </div>
   )
 }
-
+//
 export default function App() {
   return <LangProvider><AuthProvider><ToastProvider><AppShell/></ToastProvider></AuthProvider></LangProvider>
 }
