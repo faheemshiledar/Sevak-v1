@@ -19,7 +19,7 @@
 
 ![SEVAK Banner](https://via.placeholder.com/1200x400/6366f1/ffffff?text=SEVAK+%E2%80%94+AI+Emergency+Response+Platform)
 
-> 🏆 Built by **Faheem Shiledar** · **Team NIRVANA**
+> 🏆 Built by **Faheem Shiledar** · **Kalim Sayyed** · **Team NIRVANA**
 
 </div>
 
