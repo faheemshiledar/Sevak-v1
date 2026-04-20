@@ -101,6 +101,500 @@ const NAV_ITEMS: { page: Page; icon: string; label: string; roles: Role[] }[] = 
   { page: 'profile',    icon: '👤', label: 'My Profile',       roles: ['citizen', 'volunteer', 'coordinator'] },
 ]
 
+// ─── LANGUAGE / i18n ──────────────────────────────────────────────────────────
+type Lang = 'en' | 'hi'
+const translations = {
+  en: {
+    // Nav
+    nav_dashboard:   'Dashboard',
+    nav_report:      'Report Emergency',
+    nav_cases:       'All Cases',
+    nav_analytics:   'Analytics',
+    nav_map:         'Resource Map',
+    nav_volunteers:  'Volunteers',
+    nav_alerts:      'Alerts',
+    nav_profile:     'My Profile',
+    nav_signout:     '🚪 Sign Out',
+    nav_lang:        '🌐 Language',
+    // App shell
+    loading_sevak:   'Loading SEVAK...',
+    setting_profile: 'Setting up profile...',
+    critical_pending:'Critical Pending',
+    // Topbar
+    topbar_case:     'Case',
+    // Login
+    login_subtitle:  'AI-Powered Emergency Response Platform',
+    login_signin:    'Sign In',
+    login_register:  'Register',
+    login_name:      'Full Name',
+    login_name_ph:   'Your full name',
+    login_role:      'Register as',
+    login_role_c:    '🏠 Citizen / Reporter',
+    login_role_v:    '🙋 Volunteer Responder',
+    login_role_co:   '🎯 Coordinator / Admin',
+    login_email:     'Email',
+    login_pass:      'Password',
+    login_btn_in:    'Sign In →',
+    login_btn_up:    'Create Account →',
+    login_or:        'or',
+    login_google:    'Continue with Google',
+    login_roles_note:'Roles: Citizen = report emergencies · Volunteer = respond to cases · Coordinator = manage everything',
+    // Dashboard
+    dash_title:      'Command Dashboard',
+    dash_welcome:    'Welcome back',
+    dash_seed:       '🌱 Load Demo Data',
+    dash_seeding:    'Seeding...',
+    dash_seeded:     '✅ Demo data loaded',
+    dash_report_btn: '🆘 Report Emergency',
+    dash_critical_banner: 'CRITICAL Emergency',
+    dash_critical_plural: 'CRITICAL Emergencies',
+    dash_critical_sub:   'Volunteers have been auto-notified. Please review and assign responders.',
+    dash_view_cases: 'View Cases →',
+    dash_my_cases:   '⚡ Your Assigned Cases',
+    dash_stat_total: 'Total Cases',
+    dash_stat_pending:'Pending',
+    dash_stat_active:'Active Now',
+    dash_stat_resolved:'Resolved',
+    dash_feed_title: 'Live Emergency Feed',
+    dash_feed_empty: 'All clear — no emergencies',
+    dash_feed_sub:   'Cases appear here in real time',
+    dash_feed_reporter:'Reporter',
+    dash_feed_type:  'Type',
+    dash_feed_level: 'Level',
+    dash_feed_status:'Status',
+    dash_feed_time:  'Time',
+    dash_feed_view:  'View',
+    dash_vol_status: '👥 Volunteer Status',
+    dash_available:  'Available',
+    dash_busy:       'Busy',
+    dash_cases_handled:'cases handled',
+    dash_manage_vols:'Manage Volunteers',
+    dash_resp_stats: '📊 Response Stats',
+    dash_avg_resp:   'Avg Response Time',
+    dash_week_cases: 'Cases This Week',
+    dash_unread:     'Unread Alerts',
+    // Report
+    rep_title:       '🆘 Report Emergency',
+    rep_sub:         'Multimodal AI intake — text, image & voice. AI auto-dispatches volunteers.',
+    rep_desc_label:  '💬 Describe the Emergency',
+    rep_desc_hint:   '— as much detail as possible',
+    rep_desc_ph:     'e.g. Major road accident on NH-4 near Wakad. Two trucks collided, multiple people trapped and injured. Need medical help urgently...',
+    rep_img_label:   '📷 Scene Image',
+    rep_img_hint:    '— Google Vision AI',
+    rep_img_remove:  '✕ Remove',
+    rep_img_vision:  '✓ Vision AI will analyze for emergency signals',
+    rep_img_tap:     'Tap to upload or capture',
+    rep_img_auto:    'Vision AI detects accidents, fire, injuries automatically',
+    rep_voice_label: '🎙️ Voice Report',
+    rep_voice_hint:  '— EN / HI / MR',
+    rep_voice_ok:    'Voice captured successfully',
+    rep_rerec:       'Re-record',
+    rep_hold:        'Hold to record',
+    rep_recording:   '🔴 Recording... release to stop',
+    rep_voice_langs: 'Supports English, Hindi, Marathi',
+    rep_pipeline:    '⚙️ AI Processing Pipeline',
+    rep_running:     'Running...',
+    rep_no_input:    'no input',
+    rep_submit:      '🚨 Submit & Dispatch Emergency',
+    rep_busy_btn:    'Analyzing & Dispatching...',
+    rep_info:        'After submission, AI classifies severity and automatically notifies all available volunteers and coordinators. For CRITICAL/HIGH cases, the nearest available volunteer is auto-assigned.',
+    rep_result_done: '✓ Submitted · AI Analysis Complete',
+    rep_confidence:  '🎯 Confidence:',
+    rep_vision_sc:   '⚡ Vision Short-Circuit',
+    rep_auto_assign: '👤 Auto-assigned →',
+    rep_notified:    '🔔 Volunteers & Coordinators Notified',
+    rep_saved:       '✓ Saved to Database',
+    // Cases
+    cas_title:       'All Cases',
+    cas_total:       'total',
+    cas_pending_sub: 'pending',
+    cas_search_ph:   '🔍  Search cases...',
+    cas_filter_all:  'All',
+    cas_no_match:    'No cases match your filter',
+    cas_col_id:      'ID',
+    cas_col_reporter:'Reporter',
+    cas_col_type:    'Type',
+    cas_col_level:   'Level',
+    cas_col_status:  'Status',
+    cas_col_assigned:'Assigned',
+    cas_col_time:    'Time',
+    cas_view:        'View →',
+    // Case Detail
+    cd_back:         '← Back to Cases',
+    cd_loading:      'Loading case...',
+    cd_you_vol:      'You are the responding volunteer',
+    cd_status_lbl:   'Status:',
+    cd_on_way:       "⚡ I'm On My Way",
+    cd_mark_resolved:'✅ Mark as Resolved',
+    cd_closing_note: '📝 Closing note (optional)',
+    cd_closing_ph:   'e.g. Patient stabilised, transferred to hospital. Scene secured.',
+    cd_confirm_res:  '✅ Confirm Resolved',
+    cd_saving:       'Saving...',
+    cd_cancel:       'Cancel',
+    cd_resolved_banner:'Case Resolved — Great Work!',
+    cd_case_info:    '📋 Case Information',
+    cd_id:           'ID',
+    cd_reporter:     'Reporter',
+    cd_location:     'Location',
+    cd_assigned_to:  'Assigned To',
+    cd_reported:     'Reported',
+    cd_resp_time:    'Response Time',
+    cd_resolved_by:  'Resolved By',
+    cd_unassigned:   'Unassigned',
+    cd_description:  'Description',
+    cd_vision_lbl:   'Vision Labels',
+    cd_status_mgmt:  '⚡ Status Management',
+    cd_force_resolve:'✅ Force Resolve',
+    cd_reopen:       '🔄 Re-open Case',
+    cd_assign_vol:   '👥 Assign Volunteer',
+    cd_release:      'Release',
+    cd_curr_assigned:'● Currently assigned',
+    cd_active:       '✓ Active',
+    cd_reassign:     'Re-assign to different volunteer:',
+    cd_select_vol:   'Select a volunteer to assign:',
+    cd_no_vols:      'No volunteers available right now',
+    cd_cases:        'cases',
+    cd_assign_arrow: 'Assign →',
+    cd_ai_analysis:  '🎯 AI Analysis',
+    cd_confidence:   'Confidence',
+    cd_resp_time_lbl:'Response Time',
+    cd_notes_title:  '📝 Team Notes',
+    cd_no_notes:     'No notes yet',
+    cd_note_ph:      'Add a note... (Enter to send)',
+    cd_note_send:    'Send',
+    cd_entries:      'entries',
+    // Analytics
+    an_title:        '📊 Analytics',
+    an_sub:          'System-wide performance overview',
+    an_total:        'Total Cases',
+    an_resolved:     'Resolved',
+    an_avg_resp:     'Avg Response',
+    an_active_vols:  'Active Volunteers',
+    an_trend:        '📈 Daily Case Trend (7d)',
+    an_severity:     '🎯 Cases by Severity',
+    an_types:        '🏷️ Emergency Types',
+    an_leaderboard:  '🏆 Volunteer Leaderboard',
+    an_no_data:      'No data for this period',
+    an_no_vols:      'No volunteers yet',
+    an_of_total:     'of',
+    an_total2:       'total',
+    an_rate:         'rate',
+    an_last:         'last',
+    an_days:         'days',
+    // Profile
+    pr_title:        '👤 My Profile',
+    pr_sub:          'Manage your account details and preferences',
+    pr_availability: 'AVAILABILITY',
+    pr_go_unavail:   '🔴 Go Unavailable',
+    pr_go_avail:     '🟢 Go Available',
+    pr_available:    'Available',
+    pr_unavailable:  'Unavailable',
+    pr_edit:         '✏️ Edit Details',
+    pr_fullname:     'Full Name',
+    pr_fullname_ph:  'Your full name',
+    pr_phone:        'Phone Number',
+    pr_phone_ph:     '+91 XXXXX XXXXX',
+    pr_skills:       'Skills',
+    pr_skills_hint:  '(comma-separated)',
+    pr_skills_ph:    'First Aid, CPR, Rescue...',
+    pr_save:         '💾 Save Changes',
+    pr_stats:        '📊 Your Stats',
+    pr_cases_handled:'Cases Handled',
+    pr_rating:       'Rating',
+    pr_your_skills:  'Your Skills',
+    pr_account:      '🛡️ Account Info',
+    pr_role:         'Role',
+    pr_userid:       'User ID',
+    pr_email:        'Email',
+    // Volunteers
+    vl_title:        '👥 Volunteer Management',
+    vl_available:    'available',
+    vl_busy:         'busy',
+    vl_total:        'total',
+    vl_avail_now:    'Available Now',
+    vl_busy_dep:     'Busy / Deployed',
+    vl_total_done:   'Total Cases Done',
+    vl_search_ph:    '🔍 Search volunteers...',
+    vl_volunteers:   'volunteers',
+    vl_no_vols:      'No volunteers registered',
+    vl_no_vols_sub:  'Users who register as Volunteer appear here',
+    vl_col_vol:      'Volunteer',
+    vl_col_email:    'Email',
+    vl_col_rating:   'Rating',
+    vl_col_done:     'Cases Done',
+    vl_col_status:   'Status',
+    vl_col_action:   'Action',
+    vl_mark_busy:    'Mark Busy',
+    vl_mark_avail:   'Mark Available',
+    vl_general:      'General responder',
+    // Alerts
+    al_title:        '🔔 Alerts & Notifications',
+    al_unread:       'unread',
+    al_total:        'total',
+    al_mark_all:     'Mark all read',
+    al_empty_title:  'No alerts yet',
+    al_empty_sub:    "You'll be notified here when emergencies are reported or assigned to you",
+    al_view_case:    'View Case →',
+    // Map
+    map_title:       '🗺️ Resource Map',
+    map_cases:       'active cases',
+    map_vols:        'volunteers available',
+    map_no_key:      'Maps API key not configured',
+    map_no_key_sub:  'Add VITE_GOOGLE_MAPS_API_KEY to .env.local',
+    map_volunteer:   'Volunteer',
+  },
+  hi: {
+    // Nav
+    nav_dashboard:   'डैशबोर्ड',
+    nav_report:      'आपातकाल रिपोर्ट करें',
+    nav_cases:       'सभी केस',
+    nav_analytics:   'विश्लेषण',
+    nav_map:         'संसाधन मानचित्र',
+    nav_volunteers:  'स्वयंसेवक',
+    nav_alerts:      'सूचनाएँ',
+    nav_profile:     'मेरी प्रोफ़ाइल',
+    nav_signout:     '🚪 साइन आउट',
+    nav_lang:        '🌐 भाषा',
+    // App shell
+    loading_sevak:   'SEVAK लोड हो रहा है...',
+    setting_profile: 'प्रोफ़ाइल सेट हो रही है...',
+    critical_pending:'गंभीर लंबित',
+    // Topbar
+    topbar_case:     'केस',
+    // Login
+    login_subtitle:  'AI-संचालित आपातकाल प्रतिक्रिया प्लेटफ़ॉर्म',
+    login_signin:    'साइन इन',
+    login_register:  'पंजीकरण',
+    login_name:      'पूरा नाम',
+    login_name_ph:   'आपका पूरा नाम',
+    login_role:      'किस रूप में पंजीकृत हों',
+    login_role_c:    '🏠 नागरिक / रिपोर्टर',
+    login_role_v:    '🙋 स्वयंसेवक उत्तरदाता',
+    login_role_co:   '🎯 समन्वयक / प्रशासक',
+    login_email:     'ईमेल',
+    login_pass:      'पासवर्ड',
+    login_btn_in:    'साइन इन करें →',
+    login_btn_up:    'खाता बनाएं →',
+    login_or:        'या',
+    login_google:    'Google से जारी रखें',
+    login_roles_note:'भूमिकाएँ: नागरिक = आपातकाल रिपोर्ट करें · स्वयंसेवक = केस पर प्रतिक्रिया करें · समन्वयक = सब कुछ प्रबंधित करें',
+    // Dashboard
+    dash_title:      'कमांड डैशबोर्ड',
+    dash_welcome:    'वापस स्वागत है',
+    dash_seed:       '🌱 डेमो डेटा लोड करें',
+    dash_seeding:    'लोड हो रहा है...',
+    dash_seeded:     '✅ डेमो डेटा लोड हुआ',
+    dash_report_btn: '🆘 आपातकाल रिपोर्ट करें',
+    dash_critical_banner: 'गंभीर आपातकाल',
+    dash_critical_plural: 'गंभीर आपातकाल',
+    dash_critical_sub:   'स्वयंसेवकों को सूचित किया गया है। कृपया समीक्षा करें और उत्तरदाता नियुक्त करें।',
+    dash_view_cases: 'केस देखें →',
+    dash_my_cases:   '⚡ आपके असाइन किए गए केस',
+    dash_stat_total: 'कुल केस',
+    dash_stat_pending:'लंबित',
+    dash_stat_active:'अभी सक्रिय',
+    dash_stat_resolved:'हल किए गए',
+    dash_feed_title: 'लाइव आपातकाल फ़ीड',
+    dash_feed_empty: 'सब साफ़ — कोई आपातकाल नहीं',
+    dash_feed_sub:   'केस यहाँ रीयल टाइम में दिखेंगे',
+    dash_feed_reporter:'रिपोर्टर',
+    dash_feed_type:  'प्रकार',
+    dash_feed_level: 'स्तर',
+    dash_feed_status:'स्थिति',
+    dash_feed_time:  'समय',
+    dash_feed_view:  'देखें',
+    dash_vol_status: '👥 स्वयंसेवक स्थिति',
+    dash_available:  'उपलब्ध',
+    dash_busy:       'व्यस्त',
+    dash_cases_handled:'केस संभाले',
+    dash_manage_vols:'स्वयंसेवक प्रबंधित करें',
+    dash_resp_stats: '📊 प्रतिक्रिया आँकड़े',
+    dash_avg_resp:   'औसत प्रतिक्रिया समय',
+    dash_week_cases: 'इस सप्ताह के केस',
+    dash_unread:     'अपठित सूचनाएँ',
+    // Report
+    rep_title:       '🆘 आपातकाल रिपोर्ट करें',
+    rep_sub:         'मल्टीमोडल AI — टेक्स्ट, चित्र और आवाज़। AI स्वयंसेवकों को स्वत: भेजता है।',
+    rep_desc_label:  '💬 आपातकाल का वर्णन करें',
+    rep_desc_hint:   '— जितना संभव हो उतना विवरण दें',
+    rep_desc_ph:     'उदा. NH-4 पर वकड के पास बड़ा सड़क हादसा। दो ट्रक टकराए, कई लोग फंसे और घायल। तुरंत चिकित्सा सहायता चाहिए...',
+    rep_img_label:   '📷 दृश्य चित्र',
+    rep_img_hint:    '— Google Vision AI',
+    rep_img_remove:  '✕ हटाएं',
+    rep_img_vision:  '✓ Vision AI आपातकालीन संकेत खोजेगा',
+    rep_img_tap:     'अपलोड करने के लिए टैप करें',
+    rep_img_auto:    'Vision AI दुर्घटनाएं, आग, चोटें स्वत: पहचानता है',
+    rep_voice_label: '🎙️ आवाज़ रिपोर्ट',
+    rep_voice_hint:  '— EN / HI / MR',
+    rep_voice_ok:    'आवाज़ सफलतापूर्वक रिकॉर्ड हुई',
+    rep_rerec:       'दोबारा रिकॉर्ड करें',
+    rep_hold:        'रिकॉर्ड करने के लिए दबाए रखें',
+    rep_recording:   '🔴 रिकॉर्डिंग... रोकने के लिए छोड़ें',
+    rep_voice_langs: 'अंग्रेज़ी, हिंदी, मराठी समर्थित',
+    rep_pipeline:    '⚙️ AI प्रोसेसिंग पाइपलाइन',
+    rep_running:     'चल रहा है...',
+    rep_no_input:    'कोई इनपुट नहीं',
+    rep_submit:      '🚨 सबमिट करें और भेजें',
+    rep_busy_btn:    'विश्लेषण और भेज रहे हैं...',
+    rep_info:        'सबमिट करने के बाद, AI गंभीरता वर्गीकृत करता है और सभी उपलब्ध स्वयंसेवकों व समन्वयकों को सूचित करता है।',
+    rep_result_done: '✓ सबमिट हुआ · AI विश्लेषण पूर्ण',
+    rep_confidence:  '🎯 विश्वास:',
+    rep_vision_sc:   '⚡ Vision शॉर्ट-सर्किट',
+    rep_auto_assign: '👤 स्वत: नियुक्त →',
+    rep_notified:    '🔔 स्वयंसेवक और समन्वयक सूचित',
+    rep_saved:       '✓ डेटाबेस में सहेजा गया',
+    // Cases
+    cas_title:       'सभी केस',
+    cas_total:       'कुल',
+    cas_pending_sub: 'लंबित',
+    cas_search_ph:   '🔍  केस खोजें...',
+    cas_filter_all:  'सभी',
+    cas_no_match:    'आपके फ़िल्टर से कोई केस नहीं मिला',
+    cas_col_id:      'ID',
+    cas_col_reporter:'रिपोर्टर',
+    cas_col_type:    'प्रकार',
+    cas_col_level:   'स्तर',
+    cas_col_status:  'स्थिति',
+    cas_col_assigned:'नियुक्त',
+    cas_col_time:    'समय',
+    cas_view:        'देखें →',
+    // Case Detail
+    cd_back:         '← केस पर वापस जाएं',
+    cd_loading:      'केस लोड हो रहा है...',
+    cd_you_vol:      'आप उत्तरदाता स्वयंसेवक हैं',
+    cd_status_lbl:   'स्थिति:',
+    cd_on_way:       '⚡ मैं आ रहा हूँ',
+    cd_mark_resolved:'✅ हल किया हुआ चिह्नित करें',
+    cd_closing_note: '📝 समापन नोट (वैकल्पिक)',
+    cd_closing_ph:   'उदा. मरीज़ स्थिर हुए, अस्पताल स्थानांतरित। दृश्य सुरक्षित।',
+    cd_confirm_res:  '✅ हल की पुष्टि करें',
+    cd_saving:       'सहेज रहे हैं...',
+    cd_cancel:       'रद्द करें',
+    cd_resolved_banner:'केस हल हुआ — शानदार काम!',
+    cd_case_info:    '📋 केस जानकारी',
+    cd_id:           'ID',
+    cd_reporter:     'रिपोर्टर',
+    cd_location:     'स्थान',
+    cd_assigned_to:  'नियुक्त को',
+    cd_reported:     'रिपोर्ट किया',
+    cd_resp_time:    'प्रतिक्रिया समय',
+    cd_resolved_by:  'हल करने वाले',
+    cd_unassigned:   'अनियुक्त',
+    cd_description:  'विवरण',
+    cd_vision_lbl:   'Vision लेबल',
+    cd_status_mgmt:  '⚡ स्थिति प्रबंधन',
+    cd_force_resolve:'✅ जबरदस्ती हल करें',
+    cd_reopen:       '🔄 केस पुनः खोलें',
+    cd_assign_vol:   '👥 स्वयंसेवक नियुक्त करें',
+    cd_release:      'छोड़ें',
+    cd_curr_assigned:'● वर्तमान में नियुक्त',
+    cd_active:       '✓ सक्रिय',
+    cd_reassign:     'अलग स्वयंसेवक को पुनः नियुक्त करें:',
+    cd_select_vol:   'नियुक्त करने के लिए स्वयंसेवक चुनें:',
+    cd_no_vols:      'अभी कोई स्वयंसेवक उपलब्ध नहीं',
+    cd_cases:        'केस',
+    cd_assign_arrow: 'नियुक्त करें →',
+    cd_ai_analysis:  '🎯 AI विश्लेषण',
+    cd_confidence:   'विश्वास',
+    cd_resp_time_lbl:'प्रतिक्रिया समय',
+    cd_notes_title:  '📝 टीम नोट्स',
+    cd_no_notes:     'अभी कोई नोट नहीं',
+    cd_note_ph:      'नोट जोड़ें... (भेजने के लिए Enter)',
+    cd_note_send:    'भेजें',
+    cd_entries:      'प्रविष्टियाँ',
+    // Analytics
+    an_title:        '📊 विश्लेषण',
+    an_sub:          'सिस्टम-व्यापी प्रदर्शन अवलोकन',
+    an_total:        'कुल केस',
+    an_resolved:     'हल किए गए',
+    an_avg_resp:     'औसत प्रतिक्रिया',
+    an_active_vols:  'सक्रिय स्वयंसेवक',
+    an_trend:        '📈 दैनिक केस प्रवृत्ति (7d)',
+    an_severity:     '🎯 गंभीरता के अनुसार केस',
+    an_types:        '🏷️ आपातकाल के प्रकार',
+    an_leaderboard:  '🏆 स्वयंसेवक लीडरबोर्ड',
+    an_no_data:      'इस अवधि के लिए कोई डेटा नहीं',
+    an_no_vols:      'अभी कोई स्वयंसेवक नहीं',
+    an_of_total:     'में से',
+    an_total2:       'कुल',
+    an_rate:         'दर',
+    an_last:         'पिछले',
+    an_days:         'दिन',
+    // Profile
+    pr_title:        '👤 मेरी प्रोफ़ाइल',
+    pr_sub:          'अपनी खाता जानकारी और प्राथमिकताएं प्रबंधित करें',
+    pr_availability: 'उपलब्धता',
+    pr_go_unavail:   '🔴 अनुपलब्ध हों',
+    pr_go_avail:     '🟢 उपलब्ध हों',
+    pr_available:    'उपलब्ध',
+    pr_unavailable:  'अनुपलब्ध',
+    pr_edit:         '✏️ विवरण संपादित करें',
+    pr_fullname:     'पूरा नाम',
+    pr_fullname_ph:  'आपका पूरा नाम',
+    pr_phone:        'फ़ोन नंबर',
+    pr_phone_ph:     '+91 XXXXX XXXXX',
+    pr_skills:       'कौशल',
+    pr_skills_hint:  '(अल्पविराम से अलग करें)',
+    pr_skills_ph:    'प्राथमिक उपचार, CPR, बचाव...',
+    pr_save:         '💾 परिवर्तन सहेजें',
+    pr_stats:        '📊 आपके आँकड़े',
+    pr_cases_handled:'संभाले गए केस',
+    pr_rating:       'रेटिंग',
+    pr_your_skills:  'आपके कौशल',
+    pr_account:      '🛡️ खाता जानकारी',
+    pr_role:         'भूमिका',
+    pr_userid:       'उपयोगकर्ता ID',
+    pr_email:        'ईमेल',
+    // Volunteers
+    vl_title:        '👥 स्वयंसेवक प्रबंधन',
+    vl_available:    'उपलब्ध',
+    vl_busy:         'व्यस्त',
+    vl_total:        'कुल',
+    vl_avail_now:    'अभी उपलब्ध',
+    vl_busy_dep:     'व्यस्त / तैनात',
+    vl_total_done:   'कुल केस पूर्ण',
+    vl_search_ph:    '🔍 स्वयंसेवक खोजें...',
+    vl_volunteers:   'स्वयंसेवक',
+    vl_no_vols:      'कोई स्वयंसेवक पंजीकृत नहीं',
+    vl_no_vols_sub:  'स्वयंसेवक के रूप में पंजीकृत उपयोगकर्ता यहाँ दिखेंगे',
+    vl_col_vol:      'स्वयंसेवक',
+    vl_col_email:    'ईमेल',
+    vl_col_rating:   'रेटिंग',
+    vl_col_done:     'केस पूर्ण',
+    vl_col_status:   'स्थिति',
+    vl_col_action:   'कार्रवाई',
+    vl_mark_busy:    'व्यस्त चिह्नित करें',
+    vl_mark_avail:   'उपलब्ध चिह्नित करें',
+    vl_general:      'सामान्य उत्तरदाता',
+    // Alerts
+    al_title:        '🔔 सूचनाएँ और अधिसूचनाएँ',
+    al_unread:       'अपठित',
+    al_total:        'कुल',
+    al_mark_all:     'सभी पढ़े हुए चिह्नित करें',
+    al_empty_title:  'अभी कोई सूचना नहीं',
+    al_empty_sub:    'जब आपातकाल रिपोर्ट किए जाएंगे या आपको सौंपे जाएंगे, तब यहाँ सूचित किया जाएगा',
+    al_view_case:    'केस देखें →',
+    // Map
+    map_title:       '🗺️ संसाधन मानचित्र',
+    map_cases:       'सक्रिय केस',
+    map_vols:        'स्वयंसेवक उपलब्ध',
+    map_no_key:      'Maps API कुंजी कॉन्फ़िगर नहीं',
+    map_no_key_sub:  '.env.local में VITE_GOOGLE_MAPS_API_KEY जोड़ें',
+    map_volunteer:   'स्वयंसेवक',
+  },
+}
+type TKey = keyof typeof translations.en
+const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: (k: TKey) => string }>({
+  lang: 'en', setLang: () => {}, t: (k) => translations.en[k],
+})
+const useLang = () => useContext(LangCtx)
+
+function LangProvider({ children }: { children: React.ReactNode }) {
+  const [lang, setLang] = useState<Lang>('en')
+  const t = useCallback((k: TKey) => translations[lang][k] || translations.en[k], [lang])
+  return <LangCtx.Provider value={{ lang, setLang, t }}>{children}</LangCtx.Provider>
+}
+
 // ─── GLOBAL STYLES ────────────────────────────────────────────────────────────
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
@@ -457,6 +951,7 @@ function StatCard({ label, value, grad, icon, sub }: { label:string; value:numbe
 function LoginPage() {
   const toast = useToast()
   const {refreshProfile} = useAuth()
+  const { t } = useLang()
   const [mode, setMode]   = useState<'login'|'signup'>('login')
   const [email, setEmail] = useState('')
   const [pass, setPass]   = useState('')
@@ -521,45 +1016,45 @@ function LoginPage() {
         <div style={{textAlign:'center',marginBottom:32}}>
           <div style={{width:72,height:72,borderRadius:20,background:'linear-gradient(135deg,#ff416c,#ff4b2b)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:36,margin:'0 auto 16px',boxShadow:'0 8px 24px rgba(255,65,108,0.4)'}}>🚨</div>
           <div style={{fontSize:30,fontWeight:800,color:'#1e293b',letterSpacing:'-0.5px'}}>SEVAK</div>
-          <div style={{fontSize:14,color:'#94a3b8',marginTop:6}}>AI-Powered Emergency Response Platform</div>
+          <div style={{fontSize:14,color:'#94a3b8',marginTop:6}}>{t('login_subtitle')}</div>
         </div>
 
         <div style={{display:'flex',background:'#f4f6fb',borderRadius:12,padding:4,marginBottom:24}}>
           {(['login','signup'] as const).map(m=>(
             <button key={m} onClick={()=>setMode(m)} style={{flex:1,padding:'10px',border:'none',borderRadius:9,fontFamily:'Plus Jakarta Sans',fontSize:14,fontWeight:600,cursor:'pointer',background:mode===m?'#fff':'transparent',color:mode===m?'#6366f1':'#64748b',boxShadow:mode===m?'0 2px 8px rgba(0,0,0,0.1)':'none',transition:'all 0.2s'}}>
-              {m==='login'?'Sign In':'Register'}
+              {m==='login'?t('login_signin'):t('login_register')}
             </button>
           ))}
         </div>
 
         <div style={{display:'flex',flexDirection:'column',gap:14,width:'100%'}}>
           {mode==='signup' && <>
-            <div><label style={{fontSize:13,fontWeight:600,color:'#475569',display:'block',marginBottom:6}}>Full Name</label><input className="input" placeholder="Your full name" value={name} onChange={e=>setName(e.target.value)}/></div>
-            <div><label style={{fontSize:13,fontWeight:600,color:'#475569',display:'block',marginBottom:6}}>Register as</label>
+            <div><label style={{fontSize:13,fontWeight:600,color:'#475569',display:'block',marginBottom:6}}>{t('login_name')}</label><input className="input" placeholder={t('login_name_ph')} value={name} onChange={e=>setName(e.target.value)}/></div>
+            <div><label style={{fontSize:13,fontWeight:600,color:'#475569',display:'block',marginBottom:6}}>{t('login_role')}</label>
               <select className="input" value={role} onChange={e=>setRole(e.target.value as Role)}>
-                <option value="citizen">🏠 Citizen / Reporter</option>
-                <option value="volunteer">🙋 Volunteer Responder</option>
-                <option value="coordinator">🎯 Coordinator / Admin</option>
+                <option value="citizen">{t('login_role_c')}</option>
+                <option value="volunteer">{t('login_role_v')}</option>
+                <option value="coordinator">{t('login_role_co')}</option>
               </select>
             </div>
           </>}
-          <div><label style={{fontSize:13,fontWeight:600,color:'#475569',display:'block',marginBottom:6}}>Email</label><input className="input" type="email" placeholder="you@example.com" value={email} onChange={e=>setEmail(e.target.value)} onKeyDown={e=>e.key==='Enter'&&handleEmail()}/></div>
-          <div><label style={{fontSize:13,fontWeight:600,color:'#475569',display:'block',marginBottom:6}}>Password</label><input className="input" type="password" placeholder="••••••••" value={pass} onChange={e=>setPass(e.target.value)} onKeyDown={e=>e.key==='Enter'&&handleEmail()}/></div>
+          <div><label style={{fontSize:13,fontWeight:600,color:'#475569',display:'block',marginBottom:6}}>{t('login_email')}</label><input className="input" type="email" placeholder="you@example.com" value={email} onChange={e=>setEmail(e.target.value)} onKeyDown={e=>e.key==='Enter'&&handleEmail()}/></div>
+          <div><label style={{fontSize:13,fontWeight:600,color:'#475569',display:'block',marginBottom:6}}>{t('login_pass')}</label><input className="input" type="password" placeholder="••••••••" value={pass} onChange={e=>setPass(e.target.value)} onKeyDown={e=>e.key==='Enter'&&handleEmail()}/></div>
         </div>
 
         <button className="btn-primary" onClick={handleEmail} disabled={busy} style={{width:'100%',justifyContent:'center',marginTop:20,padding:14,fontSize:15,borderRadius:14}}>
-          {busy?<Spinner size={18} color="#fff"/>:mode==='login'?'Sign In →':'Create Account →'}
+          {busy?<Spinner size={18} color="#fff"/>:mode==='login'?t('login_btn_in'):t('login_btn_up')}
         </button>
 
-        <div style={{display:'flex',alignItems:'center',gap:12,margin:'18px 0'}}><div style={{flex:1,height:1,background:'#e2e8f0'}}/><span style={{fontSize:12,color:'#94a3b8'}}>or</span><div style={{flex:1,height:1,background:'#e2e8f0'}}/></div>
+        <div style={{display:'flex',alignItems:'center',gap:12,margin:'18px 0'}}><div style={{flex:1,height:1,background:'#e2e8f0'}}/><span style={{fontSize:12,color:'#94a3b8'}}>{t('login_or')}</span><div style={{flex:1,height:1,background:'#e2e8f0'}}/></div>
 
         <button onClick={handleGoogle} disabled={busy} style={{width:'100%',padding:13,border:'1.5px solid #e2e8f0',borderRadius:14,background:'#fff',fontFamily:'Plus Jakarta Sans',fontSize:14,fontWeight:600,cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',gap:10,color:'#334155',transition:'all 0.2s'}}>
           <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-          Continue with Google
+          {t('login_google')}
         </button>
 
         <div style={{marginTop:20,padding:14,background:'#f8fafc',borderRadius:12,fontSize:12,color:'#64748b',lineHeight:1.6}}>
-          <strong>Roles:</strong> Citizen = report emergencies · Volunteer = respond to cases · Coordinator = manage everything
+          {t('login_roles_note')}
         </div>
       </div>
     </div>
@@ -569,6 +1064,7 @@ function LoginPage() {
 // ─── DASHBOARD ────────────────────────────────────────────────────────────────
 function DashboardPage({ cases, user, onNavigate, unreadAlerts }: { cases:EmCase[]; user:AppUser; onNavigate:(p:Page,id?:string)=>void; unreadAlerts:number }) {
   const toast = useToast()
+  const { t } = useLang()
   const [volunteers, setVolunteers] = useState<AppUser[]>([])
   const [seeding, setSeeding]       = useState(false)
   const [seedDone, setSeedDone]     = useState(false)
@@ -602,22 +1098,22 @@ function DashboardPage({ cases, user, onNavigate, unreadAlerts }: { cases:EmCase
     <div style={{padding:32,animation:'fadeUp 0.4s ease'}}>
       <div style={{marginBottom:28,display:'flex',alignItems:'center',justifyContent:'space-between'}}>
         <div>
-          <div style={{fontSize:26,fontWeight:800,color:'#1e293b',letterSpacing:'-0.5px'}}>Command Dashboard</div>
+          <div style={{fontSize:26,fontWeight:800,color:'#1e293b',letterSpacing:'-0.5px'}}>{t('dash_title')}</div>
           <div style={{fontSize:14,color:'#94a3b8',marginTop:4}}>
-            Welcome back, <strong style={{color:'#6366f1'}}>{getName(user).split(' ')[0]}</strong> · {new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})}
+            {t('dash_welcome')}, <strong style={{color:'#6366f1'}}>{getName(user).split(' ')[0]}</strong> · {new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})}
           </div>
         </div>
         <div style={{display:'flex',gap:10,flexWrap:'wrap',flexShrink:0}}>
           {user.role==='coordinator' && !seedDone && (
             <button onClick={handleSeed} disabled={seeding} style={{padding:'10px 18px',border:'1.5px solid #c7d2fe',borderRadius:10,background:'#fff',color:'#6366f1',fontFamily:'Plus Jakarta Sans',fontSize:13,fontWeight:700,cursor:'pointer',display:'flex',alignItems:'center',gap:7,opacity:seeding?0.6:1,transition:'all 0.15s'}}>
-              {seeding ? <><Spinner size={14}/> Seeding...</> : '🌱 Load Demo Data'}
+              {seeding ? <><Spinner size={14}/> {t('dash_seeding')}</> : t('dash_seed')}
             </button>
           )}
           {user.role==='coordinator' && seedDone && (
-            <div style={{padding:'10px 16px',background:'#f0fdf4',border:'1.5px solid #bbf7d0',borderRadius:10,fontSize:13,fontWeight:700,color:'#15803d',display:'flex',alignItems:'center',gap:6}}>✅ Demo data loaded</div>
+            <div style={{padding:'10px 16px',background:'#f0fdf4',border:'1.5px solid #bbf7d0',borderRadius:10,fontSize:13,fontWeight:700,color:'#15803d',display:'flex',alignItems:'center',gap:6}}>{t('dash_seeded')}</div>
           )}
           <button className="btn-primary" onClick={()=>onNavigate('report')}>
-            🆘 Report Emergency
+            {t('dash_report_btn')}
           </button>
         </div>
       </div>
@@ -627,17 +1123,17 @@ function DashboardPage({ cases, user, onNavigate, unreadAlerts }: { cases:EmCase
         <div style={{background:'linear-gradient(135deg,#dc2626,#ff416c)',borderRadius:16,padding:'16px 24px',marginBottom:24,display:'flex',alignItems:'center',gap:16,color:'#fff',boxShadow:'0 8px 24px rgba(220,38,38,0.35)',animation:'fadeUp 0.3s ease'}} className="card-hover">
           <div style={{width:44,height:44,borderRadius:12,background:'rgba(255,255,255,0.2)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:22,flexShrink:0}}>🔴</div>
           <div style={{flex:1}}>
-            <div style={{fontWeight:800,fontSize:16}}>{stats.critical} CRITICAL Emergency{stats.critical>1?'s':''} Require Immediate Response</div>
-            <div style={{opacity:0.85,fontSize:13,marginTop:2}}>Volunteers have been auto-notified. Please review and assign responders.</div>
+            <div style={{fontWeight:800,fontSize:16}}>{stats.critical} {stats.critical>1?t('dash_critical_plural'):t('dash_critical_banner')} Require Immediate Response</div>
+            <div style={{opacity:0.85,fontSize:13,marginTop:2}}>{t('dash_critical_sub')}</div>
           </div>
-          <button onClick={()=>onNavigate('cases')} style={{background:'rgba(255,255,255,0.25)',border:'none',color:'#fff',padding:'9px 20px',borderRadius:10,cursor:'pointer',fontFamily:'Plus Jakarta Sans',fontWeight:700,fontSize:13,flexShrink:0}}>View Cases →</button>
+          <button onClick={()=>onNavigate('cases')} style={{background:'rgba(255,255,255,0.25)',border:'none',color:'#fff',padding:'9px 20px',borderRadius:10,cursor:'pointer',fontFamily:'Plus Jakarta Sans',fontWeight:700,fontSize:13,flexShrink:0}}>{t('dash_view_cases')}</button>
         </div>
       )}
 
       {/* My assigned cases — for volunteers */}
       {user.role==='volunteer' && myAssigned.length>0 && (
         <div className="card fade-up" style={{marginBottom:24,borderLeft:'4px solid #6366f1'}}>
-          <div style={{fontSize:16,fontWeight:700,color:'#1e293b',marginBottom:14}}>⚡ Your Assigned Cases</div>
+          <div style={{fontSize:16,fontWeight:700,color:'#1e293b',marginBottom:14}}>{t('dash_my_cases')}</div>
           {myAssigned.map(c=>(
             <div key={c.id} onClick={()=>onNavigate('case_detail',c.id)} className="card-hover" style={{display:'flex',alignItems:'center',gap:14,padding:'12px 14px',border:'1.5px solid #ede9fe',borderRadius:12,marginBottom:8,cursor:'pointer',background:'#faf9ff'}}>
               <div style={{width:42,height:42,borderRadius:12,background:LEVEL_BG[c.level],display:'flex',alignItems:'center',justifyContent:'center',fontSize:20,flexShrink:0}}>
@@ -658,17 +1154,17 @@ function DashboardPage({ cases, user, onNavigate, unreadAlerts }: { cases:EmCase
 
       {/* Stat cards */}
       <div style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:18,marginBottom:28}}>
-        <StatCard label="Total Cases"   value={stats.total}    grad="linear-gradient(135deg,#6366f1,#8b5cf6)" icon="📋"/>
-        <StatCard label="Pending"       value={stats.pending}  grad="linear-gradient(135deg,#f59e0b,#f97316)" icon="⏳" sub={stats.pending>0?`${stats.pending} need attention`:''}/>
-        <StatCard label="Active Now"    value={stats.active}   grad="linear-gradient(135deg,#3b82f6,#06b6d4)" icon="⚡"/>
-        <StatCard label="Resolved"      value={stats.resolved} grad="linear-gradient(135deg,#10b981,#34d399)" icon="✅"/>
+        <StatCard label={t('dash_stat_total')}    value={stats.total}    grad="linear-gradient(135deg,#6366f1,#8b5cf6)" icon="📋"/>
+        <StatCard label={t('dash_stat_pending')}   value={stats.pending}  grad="linear-gradient(135deg,#f59e0b,#f97316)" icon="⏳" sub={stats.pending>0?`${stats.pending} need attention`:''}/>
+        <StatCard label={t('dash_stat_active')}    value={stats.active}   grad="linear-gradient(135deg,#3b82f6,#06b6d4)" icon="⚡"/>
+        <StatCard label={t('dash_stat_resolved')}  value={stats.resolved} grad="linear-gradient(135deg,#10b981,#34d399)" icon="✅"/>
       </div>
 
       <div style={{display:'grid',gridTemplateColumns:'1fr 340px',gap:20}}>
         {/* Live feed */}
         <div className="card">
           <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:18}}>
-            <div style={{fontSize:16,fontWeight:700,color:'#1e293b'}}>Live Emergency Feed</div>
+            <div style={{fontSize:16,fontWeight:700,color:'#1e293b'}}>{t('dash_feed_title')}</div>
             <div style={{display:'flex',alignItems:'center',gap:8}}>
               <span style={{position:'relative',display:'inline-block',width:10,height:10}}>
                 <span style={{position:'absolute',inset:0,borderRadius:'50%',background:'#ef4444',animation:'ping 1.5s infinite'}}/>
@@ -680,12 +1176,12 @@ function DashboardPage({ cases, user, onNavigate, unreadAlerts }: { cases:EmCase
           {cases.length===0 ? (
             <div style={{textAlign:'center',padding:'40px 0',color:'#94a3b8'}}>
               <div style={{fontSize:48,marginBottom:12}}>🛡️</div>
-              <div style={{fontWeight:600,fontSize:16}}>All clear — no emergencies</div>
-              <div style={{fontSize:13,marginTop:6}}>Cases appear here in real time</div>
+              <div style={{fontWeight:600,fontSize:16}}>{t('dash_feed_empty')}</div>
+              <div style={{fontSize:13,marginTop:6}}>{t('dash_feed_sub')}</div>
             </div>
           ) : (
             <table>
-              <thead><tr><th>Reporter</th><th>Type</th><th>Level</th><th>Status</th><th>Time</th><th></th></tr></thead>
+              <thead><tr><th>{t('dash_feed_reporter')}</th><th>{t('dash_feed_type')}</th><th>{t('dash_feed_level')}</th><th>{t('dash_feed_status')}</th><th>{t('dash_feed_time')}</th><th></th></tr></thead>
               <tbody>
                 {cases.slice(0,8).map(c=>(
                   <tr key={c.id} style={{cursor:'pointer'}} onClick={()=>onNavigate('case_detail',c.id)}>
@@ -694,7 +1190,7 @@ function DashboardPage({ cases, user, onNavigate, unreadAlerts }: { cases:EmCase
                     <td><LevelBadge level={c.level}/></td>
                     <td><StatusBadge status={c.status}/></td>
                     <td style={{fontSize:12,color:'#94a3b8',whiteSpace:'nowrap'}}>{timeAgo(c.createdAt)}</td>
-                    <td><button className="btn-outline" onClick={e=>{e.stopPropagation();onNavigate('case_detail',c.id)}} style={{padding:'6px 14px',fontSize:12}}>View</button></td>
+                    <td><button className="btn-outline" onClick={e=>{e.stopPropagation();onNavigate('case_detail',c.id)}} style={{padding:'6px 14px',fontSize:12}}>{t('dash_feed_view')}</button></td>
                   </tr>
                 ))}
               </tbody>
@@ -706,15 +1202,15 @@ function DashboardPage({ cases, user, onNavigate, unreadAlerts }: { cases:EmCase
         <div style={{display:'flex',flexDirection:'column',gap:16}}>
           {/* Volunteer status */}
           <div className="card">
-            <div style={{fontSize:15,fontWeight:700,color:'#1e293b',marginBottom:14}}>👥 Volunteer Status</div>
+            <div style={{fontSize:15,fontWeight:700,color:'#1e293b',marginBottom:14}}>{t('dash_vol_status')}</div>
             <div style={{display:'flex',gap:12,marginBottom:14}}>
               <div style={{flex:1,background:'#f0fdf4',borderRadius:12,padding:'12px',textAlign:'center'}}>
                 <div style={{fontSize:24,fontWeight:800,color:'#16a34a'}}>{stats.availVols}</div>
-                <div style={{fontSize:12,color:'#16a34a',fontWeight:600}}>Available</div>
+                <div style={{fontSize:12,color:'#16a34a',fontWeight:600}}>{t('dash_available')}</div>
               </div>
               <div style={{flex:1,background:'#fff7ed',borderRadius:12,padding:'12px',textAlign:'center'}}>
                 <div style={{fontSize:24,fontWeight:800,color:'#ea580c'}}>{volunteers.length-stats.availVols}</div>
-                <div style={{fontSize:12,color:'#ea580c',fontWeight:600}}>Busy</div>
+                <div style={{fontSize:12,color:'#ea580c',fontWeight:600}}>{t('dash_busy')}</div>
               </div>
             </div>
             {volunteers.slice(0,4).map(v=>(
@@ -722,21 +1218,21 @@ function DashboardPage({ cases, user, onNavigate, unreadAlerts }: { cases:EmCase
                 <Avatar name={getName(v)} size={32}/>
                 <div style={{flex:1}}>
                   <div style={{fontSize:13,fontWeight:600,color:'#334155'}}>{getName(v)}</div>
-                  <div style={{fontSize:11,color:'#94a3b8'}}>{v.casesHandled||0} cases handled</div>
+                  <div style={{fontSize:11,color:'#94a3b8'}}>{v.casesHandled||0} {t('dash_cases_handled')}</div>
                 </div>
                 <div style={{width:8,height:8,borderRadius:'50%',background:v.available?'#16a34a':'#ea580c'}}/>
               </div>
             ))}
-            {user.role==='coordinator' && <button className="btn-outline" onClick={()=>onNavigate('volunteers')} style={{width:'100%',marginTop:12,textAlign:'center'}}>Manage Volunteers</button>}
+            {user.role==='coordinator' && <button className="btn-outline" onClick={()=>onNavigate('volunteers')} style={{width:'100%',marginTop:12,textAlign:'center'}}>{t('dash_manage_vols')}</button>}
           </div>
 
           {/* Quick stats */}
           <div className="card" style={{background:'linear-gradient(135deg,#6366f1,#8b5cf6)',color:'#fff',border:'none'}}>
-            <div style={{fontSize:15,fontWeight:700,marginBottom:14}}>📊 Response Stats</div>
+            <div style={{fontSize:15,fontWeight:700,marginBottom:14}}>{t('dash_resp_stats')}</div>
             {[
-              {label:'Avg Response Time',value:'4.2 min'},
-              {label:'Cases This Week',  value:cases.filter(c=>Date.now()-c.createdAt.getTime()<7*86400000).length},
-              {label:'Unread Alerts',    value:unreadAlerts},
+              {label:t('dash_avg_resp'), value:'4.2 min'},
+              {label:t('dash_week_cases'), value:cases.filter(c=>Date.now()-c.createdAt.getTime()<7*86400000).length},
+              {label:t('dash_unread'),    value:unreadAlerts},
             ].map(s=>(
               <div key={s.label} style={{display:'flex',justifyContent:'space-between',padding:'8px 0',borderBottom:'1px solid rgba(255,255,255,0.15)',fontSize:13}}>
                 <span style={{opacity:0.85}}>{s.label}</span>
@@ -753,6 +1249,7 @@ function DashboardPage({ cases, user, onNavigate, unreadAlerts }: { cases:EmCase
 // ─── REPORT PAGE ──────────────────────────────────────────────────────────────
 function ReportPage({ user }: { user:AppUser }) {
   const toast = useToast()
+  const { t } = useLang()
   const [text, setText]         = useState('')
   const [imgB64, setImgB64]     = useState<string|null>(null)
   const [imgPrev, setImgPrev]   = useState<string|null>(null)
@@ -819,24 +1316,24 @@ function ReportPage({ user }: { user:AppUser }) {
   return (
     <div style={{padding:32,animation:'fadeUp 0.4s ease'}}>
       <div style={{marginBottom:28}}>
-        <div style={{fontSize:26,fontWeight:800,color:'#1e293b',letterSpacing:'-0.5px'}}>🆘 Report Emergency</div>
-        <div style={{fontSize:14,color:'#94a3b8',marginTop:4}}>Multimodal AI intake — text, image &amp; voice. AI auto-dispatches volunteers.</div>
+        <div style={{fontSize:26,fontWeight:800,color:'#1e293b',letterSpacing:'-0.5px'}}>{t('rep_title')}</div>
+        <div style={{fontSize:14,color:'#94a3b8',marginTop:4}}>{t('rep_sub')}</div>
       </div>
 
       {result && (
         <div style={{borderRadius:20,padding:28,background:LEVEL_GRAD[result.level as Level],color:'#fff',marginBottom:28,position:'relative',overflow:'hidden',animation:'fadeUp 0.4s ease',boxShadow:'0 12px 40px rgba(0,0,0,0.15)'}}>
           <div style={{position:'absolute',right:24,top:24,fontSize:80,opacity:0.12}}>🧠</div>
-          <div style={{fontSize:12,fontWeight:700,opacity:0.8,textTransform:'uppercase',letterSpacing:2,marginBottom:10}}>✓ Submitted · AI Analysis Complete</div>
+          <div style={{fontSize:12,fontWeight:700,opacity:0.8,textTransform:'uppercase',letterSpacing:2,marginBottom:10}}>{t('rep_result_done')}</div>
           <div style={{fontSize:28,fontWeight:800,marginBottom:8}}>{result.level} — {result.emType}</div>
           <div style={{fontSize:15,opacity:0.95,marginBottom:16,lineHeight:1.6}}>{result.action}</div>
           <div style={{display:'flex',gap:10,flexWrap:'wrap'}}>
-            <span style={{background:'rgba(255,255,255,0.22)',padding:'7px 16px',borderRadius:20,fontSize:13,fontWeight:600}}>🎯 Confidence: {(result.confidence*100).toFixed(0)}%</span>
-            {result.shortCircuited && <span style={{background:'rgba(255,255,255,0.22)',padding:'7px 16px',borderRadius:20,fontSize:13,fontWeight:600}}>⚡ Vision Short-Circuit</span>}
+            <span style={{background:'rgba(255,255,255,0.22)',padding:'7px 16px',borderRadius:20,fontSize:13,fontWeight:600}}>{t('rep_confidence')} {(result.confidence*100).toFixed(0)}%</span>
+            {result.shortCircuited && <span style={{background:'rgba(255,255,255,0.22)',padding:'7px 16px',borderRadius:20,fontSize:13,fontWeight:600}}>{t('rep_vision_sc')}</span>}
             {result.dispatch?.assignedName
-              ? <span style={{background:'rgba(255,255,255,0.22)',padding:'7px 16px',borderRadius:20,fontSize:13,fontWeight:600}}>👤 Auto-assigned → {result.dispatch.assignedName}</span>
-              : <span style={{background:'rgba(255,255,255,0.22)',padding:'7px 16px',borderRadius:20,fontSize:13,fontWeight:600}}>🔔 Volunteers &amp; Coordinators Notified</span>
+              ? <span style={{background:'rgba(255,255,255,0.22)',padding:'7px 16px',borderRadius:20,fontSize:13,fontWeight:600}}>{t('rep_auto_assign')} {result.dispatch.assignedName}</span>
+              : <span style={{background:'rgba(255,255,255,0.22)',padding:'7px 16px',borderRadius:20,fontSize:13,fontWeight:600}}>{t('rep_notified')}</span>
             }
-            <span style={{background:'rgba(255,255,255,0.22)',padding:'7px 16px',borderRadius:20,fontSize:13,fontWeight:600}}>✓ Saved to Database</span>
+            <span style={{background:'rgba(255,255,255,0.22)',padding:'7px 16px',borderRadius:20,fontSize:13,fontWeight:600}}>{t('rep_saved')}</span>
           </div>
         </div>
       )}
@@ -844,40 +1341,40 @@ function ReportPage({ user }: { user:AppUser }) {
       <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20,marginBottom:20}}>
         {/* Text */}
         <div className="card" style={{gridColumn:'span 2'}}>
-          <div style={{fontSize:15,fontWeight:700,color:'#1e293b',marginBottom:12}}>💬 Describe the Emergency <span style={{fontSize:12,color:'#94a3b8',fontWeight:400}}>— as much detail as possible</span></div>
+          <div style={{fontSize:15,fontWeight:700,color:'#1e293b',marginBottom:12}}>{t('rep_desc_label')} <span style={{fontSize:12,color:'#94a3b8',fontWeight:400}}>{t('rep_desc_hint')}</span></div>
           <textarea value={text} onChange={e=>setText(e.target.value)} rows={4}
-            placeholder="e.g. Major road accident on NH-4 near Wakad. Two trucks collided, multiple people trapped and injured. Need medical help urgently..."
+            placeholder={t('rep_desc_ph')}
             className="input" style={{height:120,resize:'vertical',lineHeight:1.7}}/>
         </div>
 
         {/* Image */}
         <div className="card">
-          <div style={{fontSize:15,fontWeight:700,color:'#1e293b',marginBottom:12}}>📷 Scene Image <span style={{fontSize:12,color:'#94a3b8',fontWeight:400}}>— Google Vision AI</span></div>
+          <div style={{fontSize:15,fontWeight:700,color:'#1e293b',marginBottom:12}}>{t('rep_img_label')} <span style={{fontSize:12,color:'#94a3b8',fontWeight:400}}>{t('rep_img_hint')}</span></div>
           {imgPrev ? (
             <div style={{position:'relative'}}>
               <img src={imgPrev} style={{width:'100%',borderRadius:12,maxHeight:180,objectFit:'cover'}} alt="scene"/>
-              <button onClick={()=>{setImgB64(null);setImgPrev(null)}} style={{position:'absolute',top:8,right:8,background:'rgba(0,0,0,0.65)',color:'#fff',border:'none',borderRadius:20,padding:'4px 12px',fontSize:12,cursor:'pointer'}}>✕ Remove</button>
-              <div style={{marginTop:8,fontSize:12,color:'#16a34a',fontWeight:600}}>✓ Vision AI will analyze for emergency signals</div>
+              <button onClick={()=>{setImgB64(null);setImgPrev(null)}} style={{position:'absolute',top:8,right:8,background:'rgba(0,0,0,0.65)',color:'#fff',border:'none',borderRadius:20,padding:'4px 12px',fontSize:12,cursor:'pointer'}}>{t('rep_img_remove')}</button>
+              <div style={{marginTop:8,fontSize:12,color:'#16a34a',fontWeight:600}}>{t('rep_img_vision')}</div>
             </div>
           ) : (
             <label style={{display:'block',border:'2px dashed #e2e8f0',borderRadius:14,padding:'32px 16px',textAlign:'center',cursor:'pointer',transition:'border 0.2s',background:'#fafbff'}}>
               <input type="file" accept="image/*" capture="environment" onChange={handleImg} style={{display:'none'}}/>
               <div style={{fontSize:40,marginBottom:10}}>📸</div>
-              <div style={{fontSize:14,color:'#64748b',fontWeight:600}}>Tap to upload or capture</div>
-              <div style={{fontSize:12,color:'#94a3b8',marginTop:4}}>Vision AI detects accidents, fire, injuries automatically</div>
+              <div style={{fontSize:14,color:'#64748b',fontWeight:600}}>{t('rep_img_tap')}</div>
+              <div style={{fontSize:12,color:'#94a3b8',marginTop:4}}>{t('rep_img_auto')}</div>
             </label>
           )}
         </div>
 
         {/* Voice */}
         <div className="card">
-          <div style={{fontSize:15,fontWeight:700,color:'#1e293b',marginBottom:12}}>🎙️ Voice Report <span style={{fontSize:12,color:'#94a3b8',fontWeight:400}}>— EN / HI / MR</span></div>
+          <div style={{fontSize:15,fontWeight:700,color:'#1e293b',marginBottom:12}}>{t('rep_voice_label')} <span style={{fontSize:12,color:'#94a3b8',fontWeight:400}}>{t('rep_voice_hint')}</span></div>
           <div style={{textAlign:'center',padding:'16px 0'}}>
             {audioB64 ? (
               <div>
                 <div style={{width:64,height:64,borderRadius:'50%',background:'#f0fdf4',border:'2px solid #16a34a',display:'flex',alignItems:'center',justifyContent:'center',fontSize:28,margin:'0 auto 12px'}}>✅</div>
-                <div style={{fontSize:13,color:'#16a34a',fontWeight:700,marginBottom:14}}>Voice captured successfully</div>
-                <button className="btn-outline" onClick={()=>setAudio(null)}>Re-record</button>
+                <div style={{fontSize:13,color:'#16a34a',fontWeight:700,marginBottom:14}}>{t('rep_voice_ok')}</div>
+                <button className="btn-outline" onClick={()=>setAudio(null)}>{t('rep_rerec')}</button>
               </div>
             ) : (
               <>
@@ -885,8 +1382,8 @@ function ReportPage({ user }: { user:AppUser }) {
                   style={{width:80,height:80,borderRadius:'50%',border:'none',cursor:'pointer',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 14px',fontSize:32,background:recoding?'linear-gradient(135deg,#ff416c,#ff4b2b)':'linear-gradient(135deg,#6366f1,#8b5cf6)',color:'#fff',boxShadow:recoding?'0 0 0 14px rgba(255,65,108,0.2)':'0 6px 24px rgba(99,102,241,0.4)',transition:'all 0.2s'}}>
                   {recoding?'⏹':'🎙️'}
                 </button>
-                <div style={{fontSize:14,color:recoding?'#dc2626':'#64748b',fontWeight:600}}>{recoding?'🔴 Recording... release to stop':'Hold to record'}</div>
-                <div style={{fontSize:12,color:'#94a3b8',marginTop:4}}>Supports English, Hindi, Marathi</div>
+                <div style={{fontSize:14,color:recoding?'#dc2626':'#64748b',fontWeight:600}}>{recoding?t('rep_recording'):t('rep_hold')}</div>
+                <div style={{fontSize:12,color:'#94a3b8',marginTop:4}}>{t('rep_voice_langs')}</div>
               </>
             )}
           </div>
@@ -896,7 +1393,7 @@ function ReportPage({ user }: { user:AppUser }) {
       {/* Pipeline status */}
       {busy && (
         <div className="card" style={{marginBottom:20,borderLeft:'4px solid #6366f1'}}>
-          <div style={{fontSize:15,fontWeight:700,color:'#1e293b',marginBottom:14}}>⚙️ AI Processing Pipeline</div>
+          <div style={{fontSize:15,fontWeight:700,color:'#1e293b',marginBottom:14}}>{t('rep_pipeline')}</div>
           <div style={{display:'flex',flexDirection:'column',gap:8}}>
             {[
               {key:'vision',   label:'Google Vision API — Scene Analysis',           skip:!imgB64},
@@ -909,8 +1406,8 @@ function ReportPage({ user }: { user:AppUser }) {
                 <div key={s.key} style={{display:'flex',alignItems:'center',gap:12,padding:'11px 16px',borderRadius:12,background:s.skip?'#f8fafc':step===s.key?'#eff6ff':'#f8faff',border:`1px solid ${s.skip?'#f0f4ff':step===s.key?'#c7d2fe':'#e0e7ff'}`}}>
                   {s.skip ? <span style={{fontSize:16,color:'#cbd5e1'}}>—</span> : step===s.key ? <Spinner size={16}/> : <span style={{color:'#16a34a',fontWeight:700,fontSize:16}}>✓</span>}
                   <span style={{fontSize:13,fontWeight:600,color:s.skip?'#94a3b8':step===s.key?'#6366f1':'#334155'}}>{s.label}</span>
-                  {s.skip && <span style={{marginLeft:'auto',fontSize:11,color:'#94a3b8'}}>no input</span>}
-                  {step===s.key && <span style={{marginLeft:'auto',fontSize:11,color:'#6366f1',fontWeight:600}}>Running...</span>}
+                  {s.skip && <span style={{marginLeft:'auto',fontSize:11,color:'#94a3b8'}}>{t('rep_no_input')}</span>}
+                  {step===s.key && <span style={{marginLeft:'auto',fontSize:11,color:'#6366f1',fontWeight:600}}>{t('rep_running')}</span>}
                 </div>
               )
             })}
@@ -919,12 +1416,12 @@ function ReportPage({ user }: { user:AppUser }) {
       )}
 
       <button className="btn-primary" onClick={handleSubmit} disabled={busy} style={{width:'100%',justifyContent:'center',padding:16,fontSize:16,borderRadius:14}}>
-        {busy?<><Spinner size={20} color="#fff"/> Analyzing &amp; Dispatching...</>:'🚨 Submit & Dispatch Emergency'}
+        {busy?<><Spinner size={20} color="#fff"/> {t('rep_busy_btn')}</>:t('rep_submit')}
       </button>
 
       <div style={{marginTop:16,padding:14,background:'#f0f4ff',borderRadius:12,fontSize:13,color:'#64748b',display:'flex',gap:10,alignItems:'flex-start'}}>
         <span style={{fontSize:18}}>ℹ️</span>
-        <span>After submission, AI classifies severity and <strong>automatically notifies all available volunteers and coordinators</strong>. For CRITICAL/HIGH cases, the nearest available volunteer is auto-assigned.</span>
+        <span>{t('rep_info')}</span>
       </div>
     </div>
   )
@@ -934,6 +1431,7 @@ function ReportPage({ user }: { user:AppUser }) {
 function AnalyticsPage({ cases, user }: { cases: EmCase[]; user: AppUser }) {
   const [volunteers, setVolunteers] = useState<AppUser[]>([])
   const [range, setRange] = useState<7 | 30 | 90>(30)
+  const { t } = useLang()
 
   useEffect(() => {
     return onSnapshot(
@@ -990,8 +1488,8 @@ function AnalyticsPage({ cases, user }: { cases: EmCase[]; user: AppUser }) {
     <div style={{ padding: 32, animation: 'fadeUp 0.4s ease' }}>
       <div style={{ marginBottom: 28, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
-          <div style={{ fontSize: 26, fontWeight: 800, color: '#1e293b', letterSpacing: '-0.5px' }}>📊 Analytics</div>
-          <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 4 }}>System-wide performance overview</div>
+          <div style={{ fontSize: 26, fontWeight: 800, color: '#1e293b', letterSpacing: '-0.5px' }}>{t('an_title')}</div>
+          <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 4 }}>{t('an_sub')}</div>
         </div>
         <div style={{ display: 'flex', gap: 6, background: '#f0f4ff', borderRadius: 10, padding: 4 }}>
           {([7, 30, 90] as const).map(r => (
@@ -1005,16 +1503,16 @@ function AnalyticsPage({ cases, user }: { cases: EmCase[]; user: AppUser }) {
 
       {/* KPI row */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 18, marginBottom: 28 }}>
-        <StatCard label="Total Cases"      value={inRange.length}            grad="linear-gradient(135deg,#6366f1,#8b5cf6)" icon="📋" sub={`last ${range} days`} />
-        <StatCard label="Resolved"         value={resolved.length}           grad="linear-gradient(135deg,#10b981,#34d399)" icon="✅" sub={`${resolutionRate}% rate`} />
-        <StatCard label="Avg Response"     value={avgResponse ? `${avgResponse}m` : '—'} grad="linear-gradient(135deg,#3b82f6,#06b6d4)" icon="⚡" />
-        <StatCard label="Active Volunteers" value={volunteers.filter(v => v.available).length} grad="linear-gradient(135deg,#f59e0b,#f97316)" icon="👥" sub={`of ${volunteers.length} total`} />
+        <StatCard label={t('an_total')}      value={inRange.length}            grad="linear-gradient(135deg,#6366f1,#8b5cf6)" icon="📋" sub={`${t('an_last')} ${range} ${t('an_days')}`} />
+        <StatCard label={t('an_resolved')}    value={resolved.length}           grad="linear-gradient(135deg,#10b981,#34d399)" icon="✅" sub={`${resolutionRate}% ${t('an_rate')}`} />
+        <StatCard label={t('an_avg_resp')}    value={avgResponse ? `${avgResponse}m` : '—'} grad="linear-gradient(135deg,#3b82f6,#06b6d4)" icon="⚡" />
+        <StatCard label={t('an_active_vols')} value={volunteers.filter(v => v.available).length} grad="linear-gradient(135deg,#f59e0b,#f97316)" icon="👥" sub={`${t('an_of_total')} ${volunteers.length} ${t('an_total2')}`} />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 20 }}>
         {/* Daily trend */}
         <div className="card">
-          <div style={{ fontSize: 16, fontWeight: 700, color: '#1e293b', marginBottom: 16 }}>📈 Daily Case Trend (7d)</div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: '#1e293b', marginBottom: 16 }}>{t('an_trend')}</div>
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8, height: 120 }}>
             {Object.entries(last7).map(([day, count]) => (
               <div key={day} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
@@ -1028,7 +1526,7 @@ function AnalyticsPage({ cases, user }: { cases: EmCase[]; user: AppUser }) {
 
         {/* By severity */}
         <div className="card">
-          <div style={{ fontSize: 16, fontWeight: 700, color: '#1e293b', marginBottom: 16 }}>🎯 Cases by Severity</div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: '#1e293b', marginBottom: 16 }}>{t('an_severity')}</div>
           {byLevel.map(({ level, count }) => (
             <div key={level} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
               <LevelBadge level={level} />
@@ -1045,9 +1543,9 @@ function AnalyticsPage({ cases, user }: { cases: EmCase[]; user: AppUser }) {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
         {/* By type */}
         <div className="card">
-          <div style={{ fontSize: 16, fontWeight: 700, color: '#1e293b', marginBottom: 16 }}>🏷️ Emergency Types</div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: '#1e293b', marginBottom: 16 }}>{t('an_types')}</div>
           {byType.length === 0 ? (
-            <div style={{ textAlign: 'center', color: '#94a3b8', padding: '24px 0', fontSize: 13 }}>No data for this period</div>
+            <div style={{ textAlign: 'center', color: '#94a3b8', padding: '24px 0', fontSize: 13 }}>{t('an_no_data')}</div>
           ) : byType.map(({ type, count }) => (
             <div key={type} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
               <span style={{ background: '#f0f4ff', padding: '3px 10px', borderRadius: 20, fontSize: 12, fontWeight: 700, color: '#6366f1', minWidth: 80, textAlign: 'center' }}>{type}</span>
@@ -1061,9 +1559,9 @@ function AnalyticsPage({ cases, user }: { cases: EmCase[]; user: AppUser }) {
 
         {/* Volunteer leaderboard */}
         <div className="card">
-          <div style={{ fontSize: 16, fontWeight: 700, color: '#1e293b', marginBottom: 16 }}>🏆 Volunteer Leaderboard</div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: '#1e293b', marginBottom: 16 }}>{t('an_leaderboard')}</div>
           {topVols.length === 0 ? (
-            <div style={{ textAlign: 'center', color: '#94a3b8', padding: '24px 0', fontSize: 13 }}>No volunteers yet</div>
+            <div style={{ textAlign: 'center', color: '#94a3b8', padding: '24px 0', fontSize: 13 }}>{t('an_no_vols')}</div>
           ) : topVols.map((v, i) => (
             <div key={v.uid} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderBottom: i < topVols.length - 1 ? '1px solid #f0f4ff' : 'none' }}>
               <div style={{ width: 24, height: 24, borderRadius: '50%', background: i === 0 ? '#fef3c7' : i === 1 ? '#f1f5f9' : '#fdf2e9', color: i === 0 ? '#d97706' : i === 1 ? '#64748b' : '#c2410c', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, flexShrink: 0 }}>
@@ -1075,7 +1573,7 @@ function AnalyticsPage({ cases, user }: { cases: EmCase[]; user: AppUser }) {
                 <div style={{ fontSize: 11, color: '#94a3b8' }}>{v.skills?.join(', ') || 'General'}</div>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#6366f1' }}>{v.casesHandled || 0} cases</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#6366f1' }}>{v.casesHandled || 0} {t('cd_cases')}</div>
                 <div style={{ fontSize: 11, color: '#f59e0b' }}>★ {v.rating?.toFixed(1) || '5.0'}</div>
               </div>
             </div>
@@ -1090,6 +1588,7 @@ function AnalyticsPage({ cases, user }: { cases: EmCase[]; user: AppUser }) {
 function ProfilePage({ user }: { user: AppUser }) {
   const toast = useToast()
   const { refreshProfile } = useAuth()
+  const { t } = useLang()
   const [name, setName]         = useState(getName(user))
   const [phone, setPhone]       = useState(user.phone || '')
   const [available, setAvail]   = useState(user.available ?? false)
@@ -1130,8 +1629,8 @@ function ProfilePage({ user }: { user: AppUser }) {
   return (
     <div style={{ padding: 32, animation: 'fadeUp 0.4s ease' }}>
       <div style={{ marginBottom: 28 }}>
-        <div style={{ fontSize: 26, fontWeight: 800, color: '#1e293b', letterSpacing: '-0.5px' }}>👤 My Profile</div>
-        <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 4 }}>Manage your account details and preferences</div>
+        <div style={{ fontSize: 26, fontWeight: 800, color: '#1e293b', letterSpacing: '-0.5px' }}>{t('pr_title')}</div>
+        <div style={{ fontSize: 14, color: '#94a3b8', marginTop: 4 }}>{t('pr_sub')}</div>
       </div>
 
       {/* Header card */}
@@ -1145,17 +1644,17 @@ function ProfilePage({ user }: { user: AppUser }) {
             {user.role === 'volunteer' && (
               <span style={{ background: available ? '#f0fdf4' : '#fff7ed', color: available ? '#16a34a' : '#ea580c', padding: '4px 14px', borderRadius: 20, fontSize: 12, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
                 <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'currentColor', display: 'inline-block' }} />
-                {available ? 'Available' : 'Unavailable'}
+                {available ? t('pr_available') : t('pr_unavailable')}
               </span>
             )}
           </div>
         </div>
         {user.role === 'volunteer' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'flex-end' }}>
-            <div style={{ fontSize: 12, color: '#94a3b8', fontWeight: 600 }}>AVAILABILITY</div>
+            <div style={{ fontSize: 12, color: '#94a3b8', fontWeight: 600 }}>{t('pr_availability')}</div>
             <button onClick={toggleAvailability}
               style={{ padding: '10px 20px', border: 'none', borderRadius: 12, cursor: 'pointer', fontFamily: 'Plus Jakarta Sans', fontSize: 13, fontWeight: 700, background: available ? 'linear-gradient(135deg,#ff416c,#ff4b2b)' : 'linear-gradient(135deg,#10b981,#34d399)', color: '#fff', boxShadow: available ? '0 4px 14px rgba(255,65,108,0.3)' : '0 4px 14px rgba(16,185,129,0.3)', transition: 'all 0.2s' }}>
-              {available ? '🔴 Go Unavailable' : '🟢 Go Available'}
+              {available ? t('pr_go_unavail') : t('pr_go_avail')}
             </button>
           </div>
         )}
@@ -1164,24 +1663,24 @@ function ProfilePage({ user }: { user: AppUser }) {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
         {/* Edit details */}
         <div className="card">
-          <div style={{ fontSize: 16, fontWeight: 700, color: '#1e293b', marginBottom: 16 }}>✏️ Edit Details</div>
+          <div style={{ fontSize: 16, fontWeight: 700, color: '#1e293b', marginBottom: 16 }}>{t('pr_edit')}</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             <div>
-              <label style={{ fontSize: 13, fontWeight: 600, color: '#475569', display: 'block', marginBottom: 6 }}>Full Name</label>
-              <input className="input" value={name} onChange={e => setName(e.target.value)} placeholder="Your full name" />
+              <label style={{ fontSize: 13, fontWeight: 600, color: '#475569', display: 'block', marginBottom: 6 }}>{t('pr_fullname')}</label>
+              <input className="input" value={name} onChange={e => setName(e.target.value)} placeholder={t('pr_fullname_ph')} />
             </div>
             <div>
-              <label style={{ fontSize: 13, fontWeight: 600, color: '#475569', display: 'block', marginBottom: 6 }}>Phone Number</label>
-              <input className="input" value={phone} onChange={e => setPhone(e.target.value)} placeholder="+91 XXXXX XXXXX" />
+              <label style={{ fontSize: 13, fontWeight: 600, color: '#475569', display: 'block', marginBottom: 6 }}>{t('pr_phone')}</label>
+              <input className="input" value={phone} onChange={e => setPhone(e.target.value)} placeholder={t('pr_phone_ph')} />
             </div>
             {user.role === 'volunteer' && (
               <div>
-                <label style={{ fontSize: 13, fontWeight: 600, color: '#475569', display: 'block', marginBottom: 6 }}>Skills <span style={{ fontWeight: 400, color: '#94a3b8' }}>(comma-separated)</span></label>
-                <input className="input" value={skills} onChange={e => setSkills(e.target.value)} placeholder="First Aid, CPR, Rescue..." />
+                <label style={{ fontSize: 13, fontWeight: 600, color: '#475569', display: 'block', marginBottom: 6 }}>{t('pr_skills')} <span style={{ fontWeight: 400, color: '#94a3b8' }}>{t('pr_skills_hint')}</span></label>
+                <input className="input" value={skills} onChange={e => setSkills(e.target.value)} placeholder={t('pr_skills_ph')} />
               </div>
             )}
             <button className="btn-primary" onClick={save} disabled={busy} style={{ alignSelf: 'flex-start', marginTop: 4 }}>
-              {busy ? <Spinner size={16} color="#fff" /> : '💾 Save Changes'}
+              {busy ? <Spinner size={16} color="#fff" /> : t('pr_save')}
             </button>
           </div>
         </div>
@@ -1916,6 +2415,7 @@ function VolunteersPage({ user }: { user:AppUser }) {
 function AppShell() {
   const {firebaseUser, profile, loading} = useAuth()
   const toast = useToast()
+  const { lang, setLang, t } = useLang()
   const [page, setPage]       = useState<Page>('dashboard')
   const [detailId, setDetailId] = useState<string|null>(null)
   const [cases, setCases]     = useState<EmCase[]>([])
@@ -1944,7 +2444,7 @@ function AppShell() {
   if (loading) return (
     <div style={{minHeight:'100vh',display:'flex',alignItems:'center',justifyContent:'center',background:'#f0f4ff',flexDirection:'column',gap:16}}>
       <div style={{width:72,height:72,borderRadius:20,background:'linear-gradient(135deg,#ff416c,#ff4b2b)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:36,boxShadow:'0 8px 24px rgba(255,65,108,0.4)'}}>🚨</div>
-      <Spinner size={36}/><div style={{fontSize:14,color:'#94a3b8',fontFamily:'Plus Jakarta Sans'}}>Loading SEVAK...</div>
+      <Spinner size={36}/><div style={{fontSize:14,color:'#94a3b8',fontFamily:'Plus Jakarta Sans'}}>{t('loading_sevak')}</div>
     </div>
   )
 
@@ -1952,10 +2452,21 @@ function AppShell() {
 
   if (!profile) return (
     <div style={{minHeight:'100vh',display:'flex',alignItems:'center',justifyContent:'center',background:'#f0f4ff',flexDirection:'column',gap:16}}>
-      <div style={{fontSize:48}}>🚨</div><Spinner size={36}/><div style={{fontSize:14,color:'#94a3b8',fontFamily:'Plus Jakarta Sans'}}>Setting up profile...</div>
+      <div style={{fontSize:48}}>🚨</div><Spinner size={36}/><div style={{fontSize:14,color:'#94a3b8',fontFamily:'Plus Jakarta Sans'}}>{t('setting_profile')}</div>
     </div>
   )
 
+  const navLabelKey: Record<Page, TKey> = {
+    dashboard:   'nav_dashboard',
+    report:      'nav_report',
+    cases:       'nav_cases',
+    analytics:   'nav_analytics',
+    map:         'nav_map',
+    volunteers:  'nav_volunteers',
+    alerts:      'nav_alerts',
+    profile:     'nav_profile',
+    case_detail: 'nav_cases',
+  }
   const navItems   = NAV_ITEMS.filter(n=>n.roles.includes(profile.role))
   const activePage = page==='case_detail'?'cases':page
   const critical   = cases.filter(c=>c.level==='CRITICAL'&&c.status==='PENDING').length
@@ -1992,7 +2503,7 @@ function AppShell() {
           {navItems.map(n=>(
             <div key={n.page} className={`nav-item${activePage===n.page?' active':''}`} onClick={()=>navigate(n.page)}>
               <span style={{fontSize:18}}>{n.icon}</span>
-              <span>{n.label}</span>
+              <span>{t(navLabelKey[n.page])}</span>
               {n.page==='cases'&&cases.filter(c=>c.status==='PENDING').length>0 && <span style={{marginLeft:'auto',background:'#ef4444',color:'#fff',borderRadius:20,padding:'2px 7px',fontSize:11,fontWeight:700}}>{cases.filter(c=>c.status==='PENDING').length}</span>}
               {n.page==='alerts'&&unreadAlerts>0 && <span style={{marginLeft:'auto',background:'#6366f1',color:'#fff',borderRadius:20,padding:'2px 7px',fontSize:11,fontWeight:700}}>{unreadAlerts}</span>}
             </div>
@@ -2004,10 +2515,19 @@ function AppShell() {
           {critical>0 && (
             <div style={{background:'#fef2f2',border:'1px solid #fecaca',borderRadius:12,padding:'10px 14px',marginBottom:10,cursor:'pointer',display:'flex',alignItems:'center',gap:8}} onClick={()=>navigate('cases')}>
               <span style={{animation:'pulse 1s infinite',display:'inline-block'}}>🔴</span>
-              <span style={{fontSize:12,color:'#dc2626',fontWeight:700}}>{critical} Critical Pending</span>
+              <span style={{fontSize:12,color:'#dc2626',fontWeight:700}}>{critical} {t('critical_pending')}</span>
             </div>
           )}
-          <button onClick={signOut} className="btn-outline" style={{width:'100%',textAlign:'center',fontSize:13}}>🚪 Sign Out</button>
+          {/* Language toggle */}
+          <div style={{display:'flex',background:'#f0f4ff',borderRadius:10,padding:3,marginBottom:8}}>
+            {(['en','hi'] as Lang[]).map(l=>(
+              <button key={l} onClick={()=>setLang(l)}
+                style={{flex:1,padding:'7px 0',border:'none',borderRadius:8,cursor:'pointer',fontFamily:'Plus Jakarta Sans',fontSize:12,fontWeight:700,background:lang===l?'#6366f1':'transparent',color:lang===l?'#fff':'#64748b',transition:'all 0.2s'}}>
+                {l==='en'?'EN':'हिंदी'}
+              </button>
+            ))}
+          </div>
+          <button onClick={signOut} className="btn-outline" style={{width:'100%',textAlign:'center',fontSize:13}}>{t('nav_signout')}</button>
         </div>
       </div>
 
@@ -2017,7 +2537,7 @@ function AppShell() {
         <div style={{background:'#fff',borderBottom:'1px solid #e0e7ff',padding:'14px 32px',display:'flex',alignItems:'center',justifyContent:'space-between',position:'sticky',top:0,zIndex:50,boxShadow:'0 2px 8px rgba(99,102,241,0.05)'}}>
           <div>
             <div style={{fontSize:16,fontWeight:700,color:'#1e293b'}}>
-              {page==='case_detail'&&detailId?`Case #${detailId.slice(-6).toUpperCase()}`:navItems.find(n=>n.page===activePage)?.label||'SEVAK'}
+              {page==='case_detail'&&detailId?`${t('topbar_case')} #${detailId.slice(-6).toUpperCase()}`:t(navLabelKey[activePage])||'SEVAK'}
             </div>
             <div style={{fontSize:12,color:'#94a3b8',marginTop:1}}>{new Date().toLocaleString('en-IN',{hour:'2-digit',minute:'2-digit',day:'numeric',month:'short'})}</div>
           </div>
@@ -2053,5 +2573,5 @@ function AppShell() {
 }
 
 export default function App() {
-  return <AuthProvider><ToastProvider><AppShell/></ToastProvider></AuthProvider>
+  return <LangProvider><AuthProvider><ToastProvider><AppShell/></ToastProvider></AuthProvider></LangProvider>
 }
